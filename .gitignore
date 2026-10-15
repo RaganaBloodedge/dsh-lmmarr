@@ -1,0 +1,20 @@
+node_modules/
+# 插件默认的记忆目录（config.dir 留空时落到 <cwd>/.dsh-memory）
+.dsh-memory/
+*.log
+.DS_Store
+
+# 构建产物与打包产物：都能由 `npm run build` 重建，不进版本库
+lib/
+*.tgz
+# skill 的执行层是 `npm run sync:skill` 的编译产物，真相源在 src/memory/
+skill/scripts/
+
+# dsh 的本地 profile / 会话状态
+.dsh/
+
+# 内部工作区记忆：含本机路径与私人笔记，不进版本库
+.workbuddy/
+
+# 上游项目的本地 clone（学习用，非本仓代码）
+dsh-mnemon-main/

@@ -1,0 +1,16 @@
+# 统一行尾。Windows 工作区容易整片 CRLF，而脚本带 CRLF 在 WSL/Linux 下会报
+# `bad interpreter: /bin/bash^M`，且只在换平台时才暴露。这里一次钉死。
+* text=auto
+
+*.ts    text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.md    text eol=lf
+*.sh    text eol=lf
+
+# 二进制
+*.png  binary
+*.gif  binary
+*.tgz  binary

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "outDir": "skill/scripts",
+    "rootDir": "src/memory",
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": ["src/memory/**/*.ts"]
+}
