@@ -1,0 +1,20 @@
+# 挂载探针的叠加层：不写进任何 profile，只在 boot 时临时叠上。
+#
+#   npm run verify:mount
+#
+# 注意：下面的相对路径是**相对于本文件所在目录**解析的（不是 cwd），
+# 所以从 scripts/mount-probe/ 回到仓库根要退两级。
+#
+# 它回答的是 L2.5 那个问题：插件挂上了，但工具与引导真的进了模型可见面吗？
+- insert:
+    - id: lmmarr
+      name: ../../lib/index.js
+      config:
+        writeEnabled: true
+        guidance: true
+        hotMemory: true
+        maxProjectionCharacters: 2000
+        depth: 1
+        # 用默认记忆目录 <cwd>/.dsh-memory，不污染任何真实记忆
+    - id: lmmarr-probe
+      name: ./plugin.mjs
