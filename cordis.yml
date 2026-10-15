@@ -1,0 +1,22 @@
+# dsh-lmmarr 的本地开发 overlay —— 直接从源码挂载，不需要构建。
+#
+# 用法：  dsh web --patch ./cordis.yml
+# 自检：  dsh --profile web --patch ./cordis.yml --dump-config
+#         出现 "id: lmmarr" 且 name 被解析成 file:///…/src/index.ts 即挂载成功。
+#
+# 两个「不报错、只静默失效」的坑（都踩过）：
+#   1. 顶层必须是**序列**（`- insert:`）。写成裸 mapping 会被 dsh 静默忽略；
+#   2. 路径是**相对于本文件所在目录**解析的，不是 cwd。所以 `./src/index.ts`
+#      可以随仓库移动，不需要在任何机器上改成绝对路径。
+
+- insert:
+    - id: lmmarr
+      name: ./src/index.ts
+      config:
+        # 记忆目录指向本仓的工作区记忆 —— 插件自己吃自己的狗粮
+        dir: .workbuddy/memory
+        depth: 1
+        writeEnabled: true
+        guidance: true
+        hotMemory: true
+        maxProjectionCharacters: 2000

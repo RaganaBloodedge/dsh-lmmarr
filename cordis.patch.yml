@@ -1,0 +1,26 @@
+# dsh-lmmarr 的 bundle 层：随 npm 包一起发布，由 package.json 的
+#   "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+# 指向。dsh 安装这个包时会读这个字段，把下面这层挂进 profile。
+#
+# 安装：  dsh plugin --profile web add dsh-lmmarr
+# 自检：  dsh --profile web --dump-config        # 应出现 "id: lmmarr" 层
+#
+# 这里引用的是**包名**而不是路径 —— 路径只在本机成立，别人装上必炸。
+# 顶层必须是序列：写成裸 `insert:` 映射会被静默忽略。
+
+- insert:
+    - id: lmmarr
+      name: dsh-lmmarr
+      config:
+        # 只读档开关。设 false 可让整个插件只读（写工具会明确拒绝并说明原因）
+        writeEnabled: true
+        # 是否注入记忆协议、是否把索引投影进上下文（两个都可单独关掉）
+        guidance: true
+        hotMemory: true
+        # 热记忆投影的字符预算 —— 这段文本每轮都花 token，别设太大
+        maxProjectionCharacters: 2000
+        # lmmarr_context 的默认邻域深度
+        depth: 1
+        # 记忆目录。留空则用插件默认值 <cwd>/.dsh-memory。
+        # 想接自己的记忆目录就取消注释：
+        # dir: .workbuddy/memory
